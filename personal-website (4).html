@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        /* Welcome Section */
+        #welcome {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            position: relative;
+        }
+        
+        .welcome-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .welcome-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .welcome-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .video-container {
+            max-width: 640px;
+            margin: 40px auto 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* About Section */
+        #about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .about-text h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+        }
+        
+        .info-item strong {
+            display: inline-block;
+            width: 120px;
+            color: var(--secondary-color);
+        }
+        
+        /* Achievements Section */
+        #achievements {
+            background-color: #f5f5f5;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .achievement-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .achievement-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .achievement-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Goals Section */
+        #goals {
+            background-color: white;
+        }
+        
+        .goals-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .goals-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .goal-item {
+            margin-bottom: 20px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .goal-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+        
+        /* Personal Section */
+        #personal {
+            background-color: #f5f5f5;
+        }
+        
+        .personal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .personal-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .personal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .personal-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .personal-card h3 i {
+            margin-right: 10px;
+        }
+        
+        .item-list {
+            list-style: none;
+        }
+        
+        .item-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .item-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .item-title {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .social-links li {
+            margin: 0 10px;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .about-content,
+            .goals-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-title {
+                font-size: 36px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 20px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Your Name</a>
+                <ul class="nav-links">
+                    <li><a href="#welcome">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#goals">Goals</a></li>
+                    <li><a href="#personal">Personal</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section id="welcome">
+        <div class="container">
+            <div class="welcome-content">
+                <!-- Replace with your actual photo -->
+                <img src="/api/placeholder/400/400" alt="Your Profile Photo" class="profile-image">
+                <h1 class="welcome-title">Hello, I'm Your Name</h1>
+                <p class="welcome-subtitle">Welcome to my personal website!</p>
+                <p>I'm passionate about [your interests]. This website showcases my journey, achievements, and aspirations.</p>
+                <a href="#about" class="btn">Get to Know Me</a>
+                
+                <!-- Video Introduction -->
+                <div class="video-container">
+                    <!-- Replace with your actual video -->
+                    <img src="/api/placeholder/640/360" alt="Video Introduction Placeholder">
+                    <p style="text-align: center; padding: 10px; background: rgba(0,0,0,0.5);">
+                        Your 1-2 minute introduction video will go here
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Me</h2>
+                    <p>Hello! I'm [Your Name], a passionate [your profession/study] based in [your location]. I believe in [your belief or philosophy].</p>
+                    
+                    <div class="info-item">
+                        <strong>Name:</strong> Your Full Name
+                    </div>
+                    <div class="info-item">
+                        <strong>Location:</strong> Your City, Country
+                    </div>
+                    <div class="info-item">
+                        <strong>Education:</strong> Your Degree, University Name
+                    </div>
+                    <div class="info-item">
+                        <strong>Languages:</strong> Language 1, Language 2, Language 3
+                    </div>
+                    
+                    <p>I am currently [what you're doing now] and I'm always looking for new opportunities to [what you like to do].</p>
+                    
+                    <a href="#achievements" class="btn">View My Achievements</a>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/500/500" alt="About Me Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title">My Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Achievement 1</h3>
+                    <p>Describe your achievement here. What did you do? How did you do it? What was the impact?</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Achievement 2</h3>
+                    <p>Describe your achievement here. What did you do? How did you do it? What was the impact?</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Achievement 3</h3>
+                    <p>Describe your achievement here. What did you do? How did you do it? What was the impact?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Goals Section -->
+    <section id="goals">
+        <div class="container">
+            <h2 class="section-title">Future Goals</h2>
+            <div class="goals-content">
+                <div class="goals-image">
+                    <img src="/api/placeholder/500/400" alt="Future Goals Image">
+                </div>
+                <div class="goals-text">
+                    <p>Here are the goals I'm working towards and the contributions I hope to make:</p>
+                    
+                    <div class="goal-item">
+                        <h3>Career Goal</h3>
+                        <p>Describe what you aim to achieve in your career. What position do you want to reach? What impact do you want to make?</p>
+                    </div>
+                    
+                    <div class="goal-item">
+                        <h3>Personal Development</h3>
+                        <p>What skills do you want to acquire? What personal growth do you want to achieve?</p>
+                    </div>
+                    
+                    <div class="goal-item">
+                        <h3>Contribution to Society</h3>
+                        <p>How do you plan to give back to society? What kind of positive change do you want to bring?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Side Section -->
+    <section id="personal">
+        <div class="container">
+            <h2 class="section-title">Personal Side</h2>
+            <div class="personal-grid">
+                <div class="personal-card">
+                    <h3><i class="fas fa-heart"></i> Hobbies</h3>
+                    <ul class="item-list">
+                        <li>
+                            <div class="item-title">Hobby 1</div>
+                            <p>Why you love this hobby and what it means to you.</p>
+                        </li>
+                        <li>
+                            <div class="item-title">Hobby 2</div>
+                            <p>Why you love this hobby and what it means to you.</p>
+                        </li>
+                        <li>
+                            <div class="item-title">Hobby 3</div>
+                            <p>Why you love this hobby and what it means to you.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="personal-card">
+                    <h3><i class="fas fa-user-tie"></i> Role Models</h3>
+                    <ul class="item-list">
+                        <li>
+                            <div class="item-title">Role Model 1</div>
+                            <p>Why this person inspires you and what you've learned from them.</p>
+                        </li>
+                        <li>
+                            <div class="item-title">Role Model 2</div>
+                            <p>Why this person inspires you and what you've learned from them.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="personal-card">
+                    <h3><i class="fas fa-book"></i> Favorite Books</h3>
+                    <ul class="item-list">
+                        <li>
+                            <div class="item-title">Book 1</div>
+                            <p>Why you love this book and how it has influenced you.</p>
+                        </li>
+                        <li>
+                            <div class="item-title">Book 2</div>
+                            <p>Why you love this book and how it has influenced you.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="personal-card">
+                    <h3><i class="fas fa-globe"></i> Favorite Websites</h3>
+                    <ul class="item-list">
+                        <li>
+                            <div class="item-title">Website 1</div>
+                            <p>Why you find this website valuable and how you use it.</p>
+                        </li>
+                        <li>
+                            <div class="item-title">Website 2</div>
+                            <p>Why you find this website valuable and how you use it.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="personal-card">
+                    <h3><i class="fas fa-rocket"></i> Favorite Startups</h3>
+                    <ul class="item-list">
+                        <li>
+                            <div class="item-title">Startup 1</div>
+                            <p>Why you admire this startup and what you like about their approach.</p>
+                        </li>
+                        <li>
+                            <div class="item-title">Startup 2</div>
+                            <p>Why you admire this startup and what you like about their approach.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="personal-card">
+                    <h3><i class="fas fa-hands-helping"></i> Volunteering Experience</h3>
+                    <ul class="item-list">
+                        <li>
+                            <div class="item-title">Volunteer Role 1</div>
+                            <p>What you did, where you volunteered, and what impact it had.</p>
+                        </li>
+                        <li>
+                            <div class="item-title">Volunteer Role 2</div>
+                            <p>What you did, where you volunteered, and what impact it had.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i> Your Address, City, Country
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i> your.email@example.com
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i> +1 123 456 7890
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="contact-info">
+                        <li><a href="#welcome">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#achievements">Achievements</a></li>
+                        <li><a href="#goals">Goals</a></li>
+                        <li><a href="#personal">Personal</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect With Me</h3>
+                    <p>Follow me on social media to stay updated with my latest projects and activities.</p>
+                    <ul class="social-links">
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fab fa-github"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Add active class to nav items when scrolling
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
